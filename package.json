@@ -1,0 +1,32 @@
+{
+  "name": "paperwing-mfe",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Paperwing frontend as micro-frontends: a thin shell plus Invoices and Time remotes over Module Federation.",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n shell,invoices,time -c blue,green,magenta \"npm run dev -w apps/shell\" \"npm run dev -w apps/invoices\" \"npm run dev -w apps/timesheets\"",
+    "build": "npm run build -w apps/invoices -w apps/timesheets -w apps/shell",
+    "preview": "concurrently -n shell,invoices,time -c blue,green,magenta \"npm run preview -w apps/shell\" \"npm run preview -w apps/invoices\" \"npm run preview -w apps/timesheets\"",
+    "typecheck": "tsc -b apps/shell apps/invoices apps/timesheets",
+    "dev:shell": "npm run dev -w apps/shell",
+    "preview:shell": "npm run preview -w apps/shell",
+    "dev:invoices": "npm run dev -w apps/invoices",
+    "preview:invoices": "npm run preview -w apps/invoices",
+    "dev:time": "npm run dev -w apps/timesheets",
+    "preview:time": "npm run preview -w apps/timesheets"
+  },
+  "devDependencies": {
+    "@module-federation/vite": "^1.4.0",
+    "@types/node": "^26.6.5",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.0",
+    "typescript": "^5.6.3",
+    "vite": "^6.0.0"
+  }
+}
