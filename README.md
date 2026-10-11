@@ -50,9 +50,15 @@ To show failure isolation, run the three apps in separate terminal panes (`npm r
 
 Never share a store across remotes. The moment two teams share one store, you have a monolith with extra steps.
 
+## Live demo
+
+- Shell: https://paperwing-shell.vercel.app
+- Invoices remote, standalone: https://paperwing-invoices.vercel.app
+- Time remote, standalone: https://paperwing-time.vercel.app
+
 ## Deploy
 
-Each app builds to its own `dist/` and deploys as its own static site. Deploy the remotes first, then set the shell's `VITE_*_URL` variables to their `remoteEntry.js` URLs and build the shell. Remotes need CORS enabled for the shell's origin.
+Each app builds to its own `dist/` and deploys as its own static site (the live demo is three Vercel projects deployed from the `dist` folders; `vercel.json` in each app adds CORS headers on the remotes and the SPA rewrite on the shell). Deploy the remotes first, then set the shell's `VITE_*_URL` variables to their `remoteEntry.js` URLs and build the shell. Remotes need CORS enabled for the shell's origin.
 
 ## License
 
