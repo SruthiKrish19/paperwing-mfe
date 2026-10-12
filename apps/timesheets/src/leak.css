@@ -1,0 +1,8 @@
+/* Mistake 4, reproduced on purpose (video 5). Only loaded when VITE_LEAK=1.
+   A "harmless" rule in the Time remote's own stylesheet. It ships to the page
+   with the remote and restyles every .pw-btn in the shell and in Invoices too. */
+.pw-btn {
+  background: #e0457b;
+  color: #fff;
+  border-radius: 999px;
+}

@@ -1,0 +1,7 @@
+/* The fix for mistake 4: a name only this remote can produce.
+   CSS modules hash it (.logButton_a8f2c), so nothing outside Time can match it. */
+.logButton {
+  background: #e0457b;
+  color: #fff;
+  border-radius: 999px;
+}

@@ -1,0 +1,10 @@
+{
+  "latestErrorEvent": {
+    "code": "TYPE-001",
+    "message": "Failed to generate type declaration. Execute the below cmd to reproduce and fix the error. #TYPE-001\nargs: {\"cmd\":\"/opt/homebrew/Cellar/node/25.6.1/bin/node /Users/sruthikrishnakumar/Documents/GitHub/paperwing-mfe/node_modules/typescript/bin/tsc --project /Users/sruthikrishnakumar/Documents/GitHub/paperwing-mfe/apps/timesheets/node_modules/.federation/tsconfig.ba1902980704917270f5f4bd907f9584.json\"}\nView the docs to see how to solve: https://module-federation.io/guide/troubleshooting/type#type-001",
+    "args": {
+      "cmd": "/opt/homebrew/Cellar/node/25.6.1/bin/node /Users/sruthikrishnakumar/Documents/GitHub/paperwing-mfe/node_modules/typescript/bin/tsc --project /Users/sruthikrishnakumar/Documents/GitHub/paperwing-mfe/apps/timesheets/node_modules/.federation/tsconfig.ba1902980704917270f5f4bd907f9584.json"
+    },
+    "timestamp": 1791803328161
+  }
+}
