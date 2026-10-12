@@ -1,0 +1,26 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><title>Host · iframe</title>
+<style>
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#f6f7f9;color:#15202b;transition:background .3s}
+  body.dark{background:#0b1220;color:#eef2f7}
+  header{display:flex;justify-content:space-between;align-items:center;padding:14px 24px;border-bottom:1px solid #e3e8ee;background:#fff}
+  body.dark header{background:#121d33;border-color:#2a3a57}
+  main{padding:24px;display:grid;grid-template-columns:320px 1fr;gap:24px}
+  .panel{background:#fff;border:1px solid #e3e8ee;border-radius:14px;padding:18px}
+  body.dark .panel{background:#121d33;border-color:#2a3a57}
+  iframe{border:2px dashed #d9a441;border-radius:14px;width:320px;height:200px;background:transparent}
+  button{font:inherit;font-weight:600;border-radius:9px;padding:8px 14px;border:0;background:#2457d6;color:#fff;cursor:pointer}
+  .muted{color:#5b6b7b;font-size:13px}.tag{display:inline-block;background:#fff3d6;color:#8a5a00;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700}
+</style></head>
+<body>
+<header><b>Paperwing · host page (plain HTML)</b><span id="who">Signed in as Ada</span><button id="theme">Toggle dark</button></header>
+<main>
+  <div><span class="tag">iframe</span><p class="muted">The widget is a whole separate document.</p>
+    <iframe id="w" src="/index.html" title="Reports widget"></iframe>
+    <p class="muted">Deep link into the widget: not possible from the URL bar.<br>Who is signed in, from inside the frame: <b>unknown</b> until we postMessage it.</p></div>
+  <div class="panel"><b>Host content</b><p class="muted">Clicking the host's dark toggle restyles the host. The iframe ignores it until we send it a message.</p></div>
+</main>
+<script>
+  const btn = document.getElementById('theme'); const frame = document.getElementById('w');
+  btn.addEventListener('click', () => { const dark = document.body.classList.toggle('dark'); frame.contentWindow.postMessage({ type: 'theme', theme: dark ? 'dark' : 'light' }, '*'); });
+</script>
+</body></html>

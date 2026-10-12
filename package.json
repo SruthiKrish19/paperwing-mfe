@@ -5,7 +5,8 @@
   "description": "Paperwing frontend as micro-frontends: a thin shell plus Invoices and Time remotes over Module Federation.",
   "workspaces": [
     "apps/*",
-    "packages/*"
+    "packages/*",
+    "examples/composition"
   ],
   "scripts": {
     "dev": "concurrently -n shell,invoices,time -c blue,green,magenta \"npm run dev -w apps/shell\" \"npm run dev -w apps/invoices\" \"npm run dev -w apps/timesheets\"",

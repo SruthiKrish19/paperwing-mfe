@@ -2,6 +2,7 @@ import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { InvoicesRoute } from './routes/InvoicesRoute';
 import { TimeRoute } from './routes/TimeRoute';
+import { ReportsRoute } from './routes/ReportsRoute';
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
           <NavLink to="/" end className="pw-nav">Overview</NavLink>
           <NavLink to="/invoices" className="pw-nav">Invoices</NavLink>
           <NavLink to="/time" className="pw-nav">Time</NavLink>
+          <NavLink to="/reports" className="pw-nav">Reports</NavLink>
           <div className="pw-side-foot">shell · 3 deployments</div>
         </aside>
         <div className="pw-main">
@@ -24,6 +26,7 @@ export default function App() {
               <Route path="/" element={<Home />} />
               <Route path="/invoices/*" element={<InvoicesRoute />} />
               <Route path="/time/*" element={<TimeRoute />} />
+              <Route path="/reports" element={<ReportsRoute />} />
             </Routes>
           </main>
         </div>

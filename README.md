@@ -14,6 +14,11 @@ packages/
   events/       typed event bus with replay (build-time package; the contract between remotes)
 ```
 
+## Examples
+
+- `examples/typescript-patterns/` six before/after files from the TypeScript patterns video, strict-mode checked.
+- `examples/composition/` the same widget embedded as an iframe, as a Web Component and (via `apps/shell` → Reports) over Module Federation. `npm run preview -w examples/composition` serves the two host pages on :3100.
+
 ## Run it
 
 ```

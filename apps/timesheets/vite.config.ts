@@ -10,7 +10,7 @@ export default defineConfig({
     federation({
       name: 'timesheets',
       filename: 'remoteEntry.js',
-      exposes: { './App': './src/App.tsx' },
+      exposes: { './App': './src/App.tsx', './Widget': './src/Widget.tsx' },
       shared: { react: { singleton: true, requiredVersion: '^18.3.0' }, 'react-dom': { singleton: true, requiredVersion: '^18.3.0' }, 'react-router-dom': { singleton: true, requiredVersion: '^6.0.0' } },
     }),
   ],
