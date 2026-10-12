@@ -18,6 +18,7 @@ packages/
 
 - `examples/typescript-patterns/` six before/after files from the TypeScript patterns video, strict-mode checked.
 - `examples/composition/` the same widget embedded as an iframe, as a Web Component and (via `apps/shell` → Reports) over Module Federation. `npm run preview -w examples/composition` serves the two host pages on :3100.
+- `examples/mistakes/` companion files for the seven micro-frontend mistakes video: globals and shared-dependency before/after, a consumer-driven contract test (`node --test examples/mistakes/06-contract.test.ts`) and an opt-in CSS leak reproduction (`VITE_LEAK=1 npm run build -w apps/timesheets`).
 
 ## Run it
 
