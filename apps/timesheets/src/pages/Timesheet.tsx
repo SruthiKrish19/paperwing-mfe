@@ -1,4 +1,6 @@
 import { useState, type FormEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSession } from '@paperwing/session';
 import { Button, Card, Stat, Table } from '@paperwing/ui';
 import { bus } from '@paperwing/events';
 import { clients, entries as seed, week, type Entry } from '../data/seed';
@@ -6,6 +8,8 @@ import { clients, entries as seed, week, type Entry } from '../data/seed';
 const dayName = (iso: string) => new Date(iso + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short' });
 
 export function Timesheet() {
+  const { user } = useSession();
+  const navigate = useNavigate();
   const [entries, setEntries] = useState<Entry[]>(seed);
   const [clientId, setClientId] = useState(clients[0].id);
   const [date, setDate] = useState(week[4]);
@@ -25,9 +29,11 @@ export function Timesheet() {
     setNote('');
   }
 
+  if (!user) return <div className="pw-signedout" data-signedout><strong>Sign in to log time</strong>Same session as Invoices. Signing out there signs out here.</div>;
+
   return (
     <>
-      <h1>Time</h1>
+      <h1>Time <span className="pw-badge pw-badge-info" style={{ verticalAlign: 'middle' }}>logging as {user.name}</span></h1>
       <div className="pw-grid">
         <Stat label="This week" value={`${total}h`} hint={`${entries.length} entries`} />
         {week.slice(0, 5).map((d) => <Stat key={d} label={dayName(d)} value={`${perDay(d)}h`} />)}
@@ -53,7 +59,7 @@ export function Timesheet() {
           </label>
         </form>
       </Card>
-      <Card title="Entries">
+      <Card title="Entries" actions={<Button variant="ghost" id="to-invoices" onClick={() => navigate('/invoices?filter=draft')}>Invoice these hours →</Button>}>
         <Table head={['Date', 'Client', 'Note', 'Hours']}>
           {[...entries].reverse().map((e) => (
             <tr key={e.id}>

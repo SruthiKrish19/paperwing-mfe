@@ -4,6 +4,11 @@ import { InvoicesRoute } from './routes/InvoicesRoute';
 import { TimeRoute } from './routes/TimeRoute';
 import { ReportsRoute } from './routes/ReportsRoute';
 import { ErrorInbox } from '@paperwing/telemetry';
+import { SessionMenu } from './SessionMenu';
+import { useLocation } from 'react-router-dom';
+
+// Demo affordance: show the URL, because the URL is shared state too.
+function UrlReadout() { const l = useLocation(); return <code className="pw-url">{l.pathname}{l.search}</code>; }
 
 export default function App() {
   return (
@@ -19,8 +24,8 @@ export default function App() {
         </aside>
         <div className="pw-main">
           <header className="pw-top">
-            <span className="pw-muted">Freelance invoicing, split into micro-frontends</span>
-            <span style={{ display: 'flex', gap: 14, alignItems: 'center' }}><ErrorInbox /><span className="pw-muted">Signed in as you</span></span>
+            <span className="pw-muted" style={{ display: 'flex', gap: 14, alignItems: 'center' }}>Freelance invoicing, split into micro-frontends <UrlReadout /></span>
+            <span style={{ display: 'flex', gap: 14, alignItems: 'center' }}><ErrorInbox /><SessionMenu /></span>
           </header>
           <main className="pw-content">
             <Routes>

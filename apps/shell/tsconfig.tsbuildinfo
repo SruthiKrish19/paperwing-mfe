@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/remoteboundary.tsx","./src/main.tsx","./src/remotes.d.ts","./src/vite-env.d.ts","./src/pages/home.tsx","./src/routes/invoicesroute.tsx","./src/routes/reportsroute.tsx","./src/routes/timeroute.tsx","./vite.config.ts"],"version":"5.9.3"}
+{"root":["./src/app.tsx","./src/remoteboundary.tsx","./src/sessionmenu.tsx","./src/main.tsx","./src/remotes.d.ts","./src/vite-env.d.ts","./src/pages/home.tsx","./src/routes/invoicesroute.tsx","./src/routes/reportsroute.tsx","./src/routes/timeroute.tsx","./vite.config.ts"],"version":"5.9.3"}

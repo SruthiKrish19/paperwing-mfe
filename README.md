@@ -22,6 +22,7 @@ packages/
 - `packages/flags/` feature flags without an SDK: a JSON file the app polls, `useFlag()`, stable percentage buckets, allow lists and a kill switch. `npm run check:flags` fails CI on flags past their expiry date. Live: the Invoices page has the new editor at 50 percent, try `?user=ada`.
 - `packages/telemetry/` error handling end to end: `reportError` (id, kind, boundary, release, URL; `sendBeacon` to your endpoint), `installGlobalHandlers` for event-handler errors and unhandled rejections, an `ErrorBoundary` that always reports, and a demo inbox in the shell top bar. Try `?chaos=render`, `?chaos=event`, `?chaos=async` on the Invoices page (`&boundary=off` bypasses the section boundary).
 - `examples/perf-lab/` five React performance fixes with a live before/after (`?fix=1..5&mode=before|after`, port 3200): hoisting an expensive constructor, windowing, state colocation, context granularity, stable keys. The React Profiler API feeds a stats panel (last commit, row renders, DOM nodes); run with `npm run preview -w examples/perf-lab` and throttle the CPU 4x in DevTools to reproduce the video numbers.
+- `packages/session/` the signed-in user, owned by the shell and read by every remote through `useSession()`; `authFetch` attaches the token so remotes never handle it. The URL carries the Invoices filter (`/invoices?filter=draft`), which Time deep-links to.
 
 ## Run it
 

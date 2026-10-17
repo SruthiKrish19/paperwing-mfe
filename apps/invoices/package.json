@@ -12,6 +12,7 @@
     "@paperwing/events": "*",
     "@paperwing/flags": "*",
     "@paperwing/telemetry": "*",
+    "@paperwing/session": "*",
     "@paperwing/ui": "*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

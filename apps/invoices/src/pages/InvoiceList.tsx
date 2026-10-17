@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { useSession } from '@paperwing/session';
 import { Badge, Card, Stat, Table, Button, formatMoney, type Tone } from '@paperwing/ui';
 
 import { bus } from '@paperwing/events';
@@ -12,7 +14,12 @@ import { clients, invoices as seed, unbilledHoursAtStart, type Invoice, type Inv
 const tone: Record<InvoiceStatus, Tone> = { draft: 'neutral', sent: 'info', paid: 'success', overdue: 'danger' };
 
 export function InvoiceList() {
-  const [filter, setFilter] = useState<InvoiceStatus | 'all'>('all');
+  // The URL is shared state everyone already has. Time deep-links here with ?filter=draft.
+  const [params, setParams] = useSearchParams();
+  const filter = (params.get('filter') as InvoiceStatus | 'all' | null) ?? 'all';
+  const setFilter = (f: InvoiceStatus | 'all') => setParams((p) => { f === 'all' ? p.delete('filter') : p.set('filter', f); return p; }, { replace: true });
+  // Read-only view of the session the shell owns. No token in here, ever.
+  const { user } = useSession();
   const [all, setAll] = useState<Invoice[]>(seed);
   const [creating, setCreating] = useState(false);
   // The flag decides which editor renders. Both paths ship; the config says which one runs.
@@ -42,9 +49,11 @@ export function InvoiceList() {
   const rows = useMemo(() => (filter === 'all' ? all : all.filter((i) => i.status === filter)), [filter, all]);
   const outstanding = seed.filter((i) => i.status === 'sent' || i.status === 'overdue').reduce((s, i) => s + i.totalCents, 0);
 
+  if (!user) return <div className="pw-signedout" data-signedout><strong>Sign in to see invoices</strong>The Invoices team never handles sign-in. The shell does, once, for everyone.</div>;
+
   return (
     <>
-      <h1>Invoices</h1>
+      <h1>Invoices <span className="pw-badge pw-badge-info" style={{ verticalAlign: 'middle' }}>{user.name} · {user.plan}</span></h1>
       <div className="pw-grid">
         <Stat label="Outstanding" value={formatMoney(outstanding)} hint={`${seed.filter((i) => i.status === 'overdue').length} overdue`} />
         <Stat label="Unbilled hours" value={`${unbilled}h`} hint={lastEvent ?? 'Logged in Time, not yet invoiced'} />
