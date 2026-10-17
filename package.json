@@ -6,7 +6,8 @@
   "workspaces": [
     "apps/*",
     "packages/*",
-    "examples/composition"
+    "examples/composition",
+    "examples/perf-lab"
   ],
   "scripts": {
     "dev": "concurrently -n shell,invoices,time -c blue,green,magenta \"npm run dev -w apps/shell\" \"npm run dev -w apps/invoices\" \"npm run dev -w apps/timesheets\"",
