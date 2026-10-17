@@ -18,7 +18,8 @@
     "dev:invoices": "npm run dev -w apps/invoices",
     "preview:invoices": "npm run preview -w apps/invoices",
     "dev:time": "npm run dev -w apps/timesheets",
-    "preview:time": "npm run preview -w apps/timesheets"
+    "preview:time": "npm run preview -w apps/timesheets",
+    "check:flags": "node scripts/check-flags.mjs"
   },
   "devDependencies": {
     "@module-federation/vite": "^1.4.0",
