@@ -52,3 +52,13 @@ a{color:var(--pw-accent)}
 .pw-input{font:inherit;padding:6px 10px;border:1px solid var(--pw-line);border-radius:8px;width:100%;background:#fff;color:var(--pw-ink)}
 .pw-flag-hint{font-size:12px;align-self:center;padding:3px 10px;border-radius:999px;background:#eef1f5}
 .pw-flag-hint[data-on="true"]{background:#e3f6ea;color:#176b3a}
+/* error inbox (demo view of reported errors) */
+.pw-inbox{position:relative}
+.pw-inbox-btn{font:inherit;font-size:13px;font-weight:600;border:1px solid var(--pw-line);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer;color:var(--pw-ink)}
+.pw-inbox-btn b{display:inline-block;min-width:20px;padding:0 6px;border-radius:999px;background:#eef1f5;color:#4a5968;margin-left:4px}
+.pw-inbox-btn:not([data-count="0"]) b{background:#a01c1c;color:#fff}
+.pw-inbox-panel{position:absolute;right:0;top:40px;width:520px;background:#fff;border:1px solid var(--pw-line);border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.18);padding:14px 16px;z-index:20;text-align:left}
+.pw-inbox-head{font-size:12px;color:var(--pw-muted);margin-bottom:10px}
+.pw-inbox-item{border-top:1px solid var(--pw-line);padding:10px 0;font-size:13px}
+.pw-inbox-msg{font-family:"SF Mono",Menlo,monospace;font-size:12px;margin:4px 0;color:#a01c1c}
+.pw-fallback code{background:#fff;border:1px solid #e8d5a8;border-radius:6px;padding:1px 6px}

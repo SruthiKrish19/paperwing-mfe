@@ -1,10 +1,10 @@
 {
   "latestErrorEvent": {
     "code": "TYPE-001",
-    "message": "Failed to generate type declaration. Execute the below cmd to reproduce and fix the error. #TYPE-001\nargs: {\"cmd\":\"/opt/homebrew/Cellar/node/25.6.1/bin/node /Users/sruthikrishnakumar/Documents/GitHub/paperwing-mfe/node_modules/typescript/bin/tsc --project /Users/sruthikrishnakumar/Documents/GitHub/paperwing-mfe/apps/timesheets/node_modules/.federation/tsconfig.39cc019498d13e3fdfe5254fd1de81d6.json\"}\nView the docs to see how to solve: https://module-federation.io/guide/troubleshooting/type#type-001",
+    "message": "Failed to generate type declaration. Execute the below cmd to reproduce and fix the error. #TYPE-001\nargs: {\"cmd\":\"/opt/homebrew/Cellar/node/25.6.1/bin/node /Users/sruthikrishnakumar/Documents/GitHub/paperwing-mfe/node_modules/typescript/bin/tsc --project /Users/sruthikrishnakumar/Documents/GitHub/paperwing-mfe/apps/timesheets/node_modules/.federation/tsconfig.3aa55b85d2dbe94f4ba6ed41005808e8.json\"}\nView the docs to see how to solve: https://module-federation.io/guide/troubleshooting/type#type-001",
     "args": {
-      "cmd": "/opt/homebrew/Cellar/node/25.6.1/bin/node /Users/sruthikrishnakumar/Documents/GitHub/paperwing-mfe/node_modules/typescript/bin/tsc --project /Users/sruthikrishnakumar/Documents/GitHub/paperwing-mfe/apps/timesheets/node_modules/.federation/tsconfig.39cc019498d13e3fdfe5254fd1de81d6.json"
+      "cmd": "/opt/homebrew/Cellar/node/25.6.1/bin/node /Users/sruthikrishnakumar/Documents/GitHub/paperwing-mfe/node_modules/typescript/bin/tsc --project /Users/sruthikrishnakumar/Documents/GitHub/paperwing-mfe/apps/timesheets/node_modules/.federation/tsconfig.3aa55b85d2dbe94f4ba6ed41005808e8.json"
     },
-    "timestamp": 1792212226739
+    "timestamp": 1792213169652
   }
 }

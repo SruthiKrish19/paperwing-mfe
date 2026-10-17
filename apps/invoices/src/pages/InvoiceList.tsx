@@ -3,6 +3,8 @@ import { Badge, Card, Stat, Table, Button, formatMoney, type Tone } from '@paper
 
 import { bus } from '@paperwing/events';
 import { useFlag } from '@paperwing/flags';
+import { ErrorBoundary } from '@paperwing/telemetry';
+import { chaos, InvoiceRow, exportCsv, loadExchangeRates } from './chaos';
 import { InvoiceEditor } from './InvoiceEditor';
 import { LegacyInvoiceForm } from './LegacyInvoiceForm';
 import { clients, invoices as seed, unbilledHoursAtStart, type Invoice, type InvoiceStatus } from '../data/seed';
@@ -32,6 +34,9 @@ export function InvoiceList() {
     if (!meta.replayed) setLastEvent(`+${hours}h for ${clientId} at ${new Date(meta.at).toLocaleTimeString()}`);
   }, { replay: true }), []);
 
+  // Demo: ?chaos=async rejects a promise nobody awaits. Boundaries never see it; the global handler does.
+  useEffect(() => { if (chaos === 'async') loadExchangeRates().then(() => {}); }, []);
+
   const unbilled = Math.round((unbilledHoursAtStart + Object.values(logged).reduce((a, b) => a + b, 0)) * 100) / 100;
 
   const rows = useMemo(() => (filter === 'all' ? all : all.filter((i) => i.status === filter)), [filter, all]);
@@ -56,23 +61,39 @@ export function InvoiceList() {
       </Card>
       <Card
         title="All invoices"
-        actions={(['all', 'draft', 'sent', 'paid', 'overdue'] as const).map((f) => (
-          <Button key={f} variant={filter === f ? 'primary' : 'ghost'} onClick={() => setFilter(f)}>{f}</Button>
-        ))}
-      >
-        <Table head={['Number', 'Client', 'Issued', 'Due', 'Total', 'Status']}>
-          {rows.map((i: Invoice) => (
-            <tr key={i.id}>
-              <td><strong>{i.number}</strong></td>
-              <td>{i.clientName}</td>
-              <td className="pw-muted">{i.issued}</td>
-              <td className="pw-muted">{i.due}</td>
-              <td className="num">{formatMoney(i.totalCents)}</td>
-              <td><Badge tone={tone[i.status]}>{i.status}</Badge></td>
-            </tr>
+        actions={<>
+          {(['all', 'draft', 'sent', 'paid', 'overdue'] as const).map((f) => (
+            <Button key={f} variant={filter === f ? 'primary' : 'ghost'} onClick={() => setFilter(f)}>{f}</Button>
           ))}
-        </Table>
+          <Button variant="ghost" onClick={() => exportCsv(rows)}>Export CSV</Button>
+        </>}
+      >
+        {chaos === 'render' && new URLSearchParams(location.search).get('boundary') === 'off' ? (
+          <InvoiceTable rows={rows} />
+        ) : (
+          <ErrorBoundary
+            name="invoice-table"
+            resetKeys={[filter]}
+            fallback={({ id, reset }) => (
+              <div className="pw-fallback" role="alert">
+                <strong>The invoice list couldn't be shown.</strong>
+                Your totals above are correct, and Time and Reports are unaffected. Quote <code>{id}</code> if you contact support.
+                <div style={{ marginTop: 12 }}><button className="pw-btn pw-btn-ghost" onClick={() => { window.__chaosArmed = false; reset(); }}>Try again</button></div>
+              </div>
+            )}
+          >
+            <InvoiceTable rows={rows} />
+          </ErrorBoundary>
+        )}
       </Card>
     </>
+  );
+}
+
+function InvoiceTable({ rows }: { rows: Invoice[] }) {
+  return (
+    <Table head={['Number', 'Client', 'Issued', 'Due', 'Total', 'Status']}>
+      {rows.map((i) => <InvoiceRow key={i.id} invoice={i} tone={tone[i.status]} />)}
+    </Table>
   );
 }

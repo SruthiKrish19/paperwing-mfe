@@ -3,6 +3,7 @@ import { Home } from './pages/Home';
 import { InvoicesRoute } from './routes/InvoicesRoute';
 import { TimeRoute } from './routes/TimeRoute';
 import { ReportsRoute } from './routes/ReportsRoute';
+import { ErrorInbox } from '@paperwing/telemetry';
 
 export default function App() {
   return (
@@ -19,7 +20,7 @@ export default function App() {
         <div className="pw-main">
           <header className="pw-top">
             <span className="pw-muted">Freelance invoicing, split into micro-frontends</span>
-            <span className="pw-muted">Signed in as you</span>
+            <span style={{ display: 'flex', gap: 14, alignItems: 'center' }}><ErrorInbox /><span className="pw-muted">Signed in as you</span></span>
           </header>
           <main className="pw-content">
             <Routes>
